@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="RecompildPOS.Components.StepperElement.Stepper">
+    <Grid HorizontalOptions="Fill" ColumnSpacing="0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Button Text="-" Grid.Row="0" Style="{StaticResource DefaultStepperButtonStyleWhiteText}" Clicked="Decrease_Clicked" Grid.Column="0" VerticalOptions="Center"
+                WidthRequest="45" />
+        <Entry x:Name="count" TextChanged="Count_OnTextChanged" VerticalOptions="Center" Grid.Row="0" Grid.Column="1"
+               FontSize="14" WidthRequest="70" Keyboard="Numeric" HorizontalOptions="Fill"
+               HorizontalTextAlignment="Center" />
+        <Button Text="+" VerticalOptions="Center" Style="{StaticResource DefaultStepperButtonStyleWhiteText}"  Clicked="Increase_Clicked" Grid.Row="0" Grid.Column="2"
+                WidthRequest="45" />
+    </Grid>
+</ContentView>

@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:products="clr-namespace:RecompildPOS.ViewModels.Products;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Products.ProductsPage">
+
+    <ContentPage.ToolbarItems>
+        <!-- <ToolbarItem Command="{Binding GoBackPageCommand}"> -->
+        <!--     <ToolbarItem.IconImageSource> -->
+        <!--         <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Barcode}" -->
+        <!--                          FontFamily="FontAwesomeSolid" Color="White" /> -->
+        <!--     </ToolbarItem.IconImageSource> -->
+        <!-- </ToolbarItem> -->
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <products:ProductsViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Margin="10">
+        <StackLayout>
+            <ListView IsPullToRefreshEnabled="True" CachingStrategy="RecycleElement" HasUnevenRows="True" ItemsSource="{Binding Products}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Label Text="{Binding Name}" Style="{StaticResource DefaultLabelStyleGrayText}"/>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <Button Text="Add New Product" Style="{StaticResource DefaultButtonStyleWhiteText}" Command="{Binding AddNewProductCommand}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.BoxFull}" Color="White" FontFamily="FontAwesomeRegular"></FontImageSource>
+            </Button.ImageSource>
+        </Button>
+    </StackLayout>
+
+</base:BasePage>

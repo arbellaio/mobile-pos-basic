@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<forms:ZXingScannerPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+             xmlns:cameraScan1="clr-namespace:RecompildPOS.ViewModels.MakeSale.MakeSaleScan.CameraScan;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             OnScanResult="Handle_OnScanResult" IsScanning="true" 
+             DefaultOverlayBottomText="{Binding ScannedCode}"
+             
+             NavigationPage.HasBackButton="False"
+             x:Class="RecompildPOS.Views.CameraScan.CameraScanPage">
+
+    <ContentPage.BindingContext>
+        <cameraScan1:CameraScanViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.CircleNotch}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <!-- <Grid> -->
+    <!--     <Grid.RowDefinitions> -->
+    <!--         <RowDefinition Height="Auto" /> -->
+    <!--         <RowDefinition Height="*" /> -->
+    <!--     </Grid.RowDefinitions> -->
+    <!-- -->
+    <!--     <forms:ZXingScannerView Grid.Row="0" x:Name="ScanView" OnScanResult="Handle_OnScanResult" IsScanning="true" -->
+    <!--                             WidthRequest="200" HeightRequest="200" /> -->
+    <!--     <StackLayout Grid.Row="1" Orientation="Horizontal" BackgroundColor="#66FFFFFF"> -->
+    <!--         <Label Text="Scanned Code :" Style="{StaticResource DefaultLabelStyleGrayText}"/> -->
+    <!--         <Label Text="{Binding ScannedCode}" Style="{StaticResource DefaultLabelStyleGrayText}"/> -->
+    <!--     </StackLayout> -->
+    <!-- </Grid> -->
+</forms:ZXingScannerPage>

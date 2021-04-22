@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:accounts="clr-namespace:RecompildPOS.ViewModels.Accounts;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Account.PhoneBook.PhoneBookContactsPage">
+
+    <ContentPage.BindingContext>
+        <accounts:PhoneBookContactsViewModel />
+    </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_TITLE}"
+                   Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding SaveContactsCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Save}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.x}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout CompressedLayout.IsHeadless="True" Padding="20">
+
+        <SearchBar x:Name="Search"
+                   Text="{Binding SearchContact}"
+                   CancelButtonColor="Gray"
+                   BackgroundColor="White"
+                   SearchCommand="{Binding SearchCommand}"
+                   SearchCommandParameter="{Binding Text, Source={x:Reference Search}}"
+                   Placeholder="Search Contacts ..." />
+
+        <ListView x:Name="ContactList"
+                  ItemsSource="{Binding Contacts}"
+                  BackgroundColor="White"
+                  HasUnevenRows="True"
+                  CachingStrategy="RecycleElement"
+                  ItemSelected="ContactList_OnItemSelected">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <StackLayout Orientation="Horizontal">
+                                <StackLayout Orientation="Vertical">
+                                    <Label
+                                        Text="{Binding Item.Name}" Style="{StaticResource DefaultLabelStyleGrayText}" />
+                                    <Label
+                                        Text="{Binding Item.PhoneNumber}"
+                                        Style="{StaticResource DefaultLabelStyleGrayText}" />
+                                </StackLayout>
+                                <CheckBox
+                                    IsChecked="{Binding IsSelected}"
+                                    HorizontalOptions="EndAndExpand" />
+                            </StackLayout>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</base:BasePage>

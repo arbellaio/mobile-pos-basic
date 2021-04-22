@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:zx="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             xmlns:zxcm="clr-namespace:ZXing.Common;assembly=zxing.portable"
+             xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+             xmlns:generateCode="clr-namespace:RecompildPOS.ViewModels.Products.GenerateCode;assembly=RecompildPOS"
+             xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+             x:Class="RecompildPOS.Views.Products.GenerateCode.GenerateBarcodePage">
+
+    <ContentPage.BindingContext>
+        <generateCode:GenerateCodeViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+            <zx:ZXingBarcodeImageView
+                x:Name="BarcodeImageView"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <zx:ZXingBarcodeImageView.BarcodeOptions>
+                    <zxcm:EncodingOptions Width="500" Height="300"  />
+                </zx:ZXingBarcodeImageView.BarcodeOptions>
+            </zx:ZXingBarcodeImageView>
+        <Button Text="{x:Static language:AppResources.Save}" Style="{StaticResource DefaultButtonStyleWhiteText}" Clicked="SaveCode"/>
+        </StackLayout>
+</base:BasePage>

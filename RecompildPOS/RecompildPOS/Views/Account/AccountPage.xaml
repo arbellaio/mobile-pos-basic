@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:accounts="clr-namespace:RecompildPOS.ViewModels.Accounts;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:strings="clr-namespace:RecompildPOS.Resources.Strings;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+               xmlns:valueConverters="clr-namespace:RecompildPOS.ValueConverters;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Account.AccountPage"
+               BackgroundColor="#F7F7f8"
+               NavigationPage.HasBackButton="False"
+               x:Name="APage">
+
+    <ContentPage.BindingContext>
+        <accounts:AccountViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueConverters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static language:AppResources.ACCOUNT_PAGE_TITLE}" Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddFromPhoneBookCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.AddressBook}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding NewAccountCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.UserPlus}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.x}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout>
+        <forms:AnimationView
+            x:Name="AnimationView"
+            Animation="loader.json"
+            Loop="True"
+            IsPlaying="True"
+            VerticalOptions="FillAndExpand"
+            HorizontalOptions="FillAndExpand"
+            IsVisible="{Binding IsBusy}" />
+
+        <StackLayout Padding="10" CompressedLayout.IsHeadless="True"
+                     IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}">
+            <SearchBar x:Name="Search"
+                       Text="{Binding SearchText}"
+                       CancelButtonColor="Gray"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference Search}}"
+                       Placeholder="Search Accounts..."
+                       BackgroundColor="White" />
+            <ListView ItemsSource="{Binding Accounts}"
+                      BackgroundColor="White"
+                      HasUnevenRows="True"
+                      ItemSelected="ListView_OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Margin="10">
+                                <Image>
+                                    <Image.Source>
+                                        <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.UserCircle}"
+                                                         Size="40"
+                                                         Color="Gray"
+                                                         FontFamily="FontAwesomeRegular" />
+                                    </Image.Source>
+                                </Image>
+                                <StackLayout Spacing="10" Margin="5,0,0,0">
+                                    <Label Text="{Binding Name}" Style="{StaticResource DefaultLabelStyleGrayText}" />
+                                    <Label Text="{Binding PhoneNumber}"
+                                           Style="{StaticResource DefaultLabelStyleGrayText}" />
+                                </StackLayout>
+                                <Image HorizontalOptions="EndAndExpand">
+                                    <Image.Source>
+                                        <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Phone}"
+                                                         Color="Gray"
+                                                         FontFamily="FontAwesomeRegular" />
+                                    </Image.Source>
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.CallAccountCommand, Source={x:Reference APage}}"
+                                            CommandParameter="{Binding PhoneNumber}" NumberOfTapsRequired="1" />
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+</base:BasePage>

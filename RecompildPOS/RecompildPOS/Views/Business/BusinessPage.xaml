@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:business="clr-namespace:RecompildPOS.ViewModels.Business;assembly=RecompildPOS"
+               xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:itemPicker="clr-namespace:RecompildPOS.Components.ItemPicker;assembly=RecompildPOS"
+               xmlns:picker="clr-namespace:RecompildPOS.Resources.Constants.Picker;assembly=RecompildPOS"
+               xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+               xmlns:valueConverters="clr-namespace:RecompildPOS.ValueConverters;assembly=RecompildPOS"
+               xmlns:valueSwitch="clr-namespace:RecompildPOS.Components.ValueSwitch;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Business.BusinessPage"
+               BackgroundColor="#F7F7F8">
+    <ContentPage.BindingContext>
+        <business:BusinessViewModel />
+    </ContentPage.BindingContext>
+
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static language:AppResources.BUSINESS_PAGE_TITLE}"
+                   Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueConverters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding SaveBusinessInfoCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Save}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.CircleNotch}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <Grid>
+        <Frame CornerRadius="10" BackgroundColor="White" Margin="20">
+            <StackLayout>
+                <forms:AnimationView
+                    x:Name="AnimationView"
+                    Animation="loader.json"
+                    Loop="True"
+                    IsPlaying="True"
+                    VerticalOptions="Fill"
+                    HorizontalOptions="Fill"
+                    IsVisible="{Binding IsBusy}" />
+
+                <Grid Padding="5" RowSpacing="10" CompressedLayout.IsHeadless="True"
+                      IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <entryField:EntryField Grid.Row="0" Grid.Column="0" Text="{Binding Business.Name}"
+                                           EntryIcon="{x:Static icons:FontAwesomeIcons.Landmark}"
+                                           Style="{StaticResource DefaultTextField}"
+                                           Placeholder="{x:Static language:AppResources.BUSINESS_PAGE_BUSINESS_NAME}" />
+
+                    <entryField:EntryField Grid.Row="1" Grid.Column="0" Text="{Binding Business.LicenseNumber}"
+                                           EntryIcon="{x:Static icons:FontAwesomeIcons.AddressCard}"
+                                           Style="{StaticResource DefaultTextField}"
+                                           Placeholder="{x:Static language:AppResources.BUSINESS_PAGE_BUSINESS_LICENSE_NUMBER}" />
+
+
+                    <itemPicker:ItemPicker Grid.Row="2" Grid.Column="0"
+                                           EntryIcon="{x:Static icons:FontAwesomeIcons.CabinetFiling}"
+                                           Style="{StaticResource DefaultItemPicker}"
+                                           SelectedItem="{Binding Business.Type}"
+                                           SelectedItemIndex="{Binding Business.TypeId}"
+                                           Text="{x:Static language:AppResources.BUSINESS_PAGE_BUSINESS_TYPE}"
+                                           ItemsSource="{x:Static picker:PickerConstants.BusinessType}" />
+
+                    <entryField:EntryField Grid.Row="3" Grid.Column="0" Text="{Binding Business.Owner}"
+                                           EntryIcon="{x:Static icons:FontAwesomeIcons.User}"
+                                           Style="{StaticResource DefaultTextField}"
+                                           Placeholder="{x:Static language:AppResources.BUSINESS_PAGE_BUSINESS_OWNER}" />
+
+                    <itemPicker:ItemPicker Grid.Row="4" Grid.Column="0"
+                                           EntryIcon="{x:Static icons:FontAwesomeIcons.Table}"
+                                           Style="{StaticResource DefaultItemPicker}"
+                                           SelectedItem="{Binding Business.Category}"
+                                           SelectedItemIndex="{Binding Business.CategoryId}"
+                                           ItemsSource="{x:Static picker:PickerConstants.BusinessCategory}"
+                                           Text="{x:Static language:AppResources.BUSINESS_PAGE_BUSINESS_CATEGORY}" />
+                </Grid>
+
+            </StackLayout>
+
+        </Frame>
+    </Grid>
+
+</base:BasePage>

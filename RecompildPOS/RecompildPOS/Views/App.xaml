@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:strings="clr-namespace:RecompildPOS.Resources.Strings;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Class="RecompildPOS.Views.App"
+             x:Name="page">
+
+
+   
+    <Application.Resources>
+        <ResourceDictionary Source="../Resources/Styles/BaseTheme.xaml" />
+        <!-- <ResourceDictionary Source="../Resources/Styles/Fonts.xaml" /> -->
+
+        <ControlTemplate x:Key="NoInternetControl" x:Name="ControlTemp">
+            <StackLayout
+                x:Name="ControlStack"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand">
+                <StackLayout
+                    x:Name="NoInternetStack"
+                    BackgroundColor="#fff1a8"
+                    BindingContext="{x:Reference Name=page}"
+                    HeightRequest="25"
+                    HorizontalOptions="FillAndExpand"
+                    IsVisible="{Binding IsDisconnectedStackVisible}"
+                    VerticalOptions="Start">
+                    <Label
+                        FontSize="Medium"
+                        HorizontalOptions="Center"
+                        HorizontalTextAlignment="Center"
+                        Text="No Connection"
+                        TextColor="Black"
+                        VerticalOptions="Center"
+                        VerticalTextAlignment="Center" />
+                </StackLayout>
+
+             
+
+                <ContentPresenter HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" />
+            </StackLayout>
+        </ControlTemplate>
+        
+    </Application.Resources>
+
+
+</Application>

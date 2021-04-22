@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:products1="clr-namespace:RecompildPOS.ViewModels.Products;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Products.AddProducts.AddProductPage">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding AddUpdateProductCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Save}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.CircleNotch}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static language:AppResources.PRODUCT_PAGE_ADD_NEW_PRODUCT}"
+                   Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.BindingContext>
+        <products1:AddProductViewModel />
+    </ContentPage.BindingContext>
+    <ScrollView Margin="10">
+        <Grid RowSpacing="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <Label Text="{x:Static language:AppResources.PRODUCT_PAGE_ENTER_PRODUCT_DETAILS}"
+                   Style="{StaticResource DefaultLabelStyleGrayText}" HorizontalTextAlignment="Center" Grid.Row="0"
+                   Grid.Column="0" Grid.ColumnSpan="2" />
+            <entryField:EntryField Placeholder="{x:Static language:AppResources.PRODUCT_PAGE_PRODUCT_NAME}"
+                                   Grid.Row="1" Grid.Column="0" Style="{StaticResource DefaultTextField}"
+                                   EntryIcon="{x:Static icons:FontAwesomeIcons.BoxFull}" Grid.ColumnSpan="2"
+                                   Text="{Binding ProductSync.Name}" />
+            <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <entryField:EntryField Placeholder="{x:Static language:AppResources.PRODUCT_PAGE_PRODUCT_BAR_CODE}"
+                                       Style="{StaticResource DefaultTextField}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.BarcodeAlt}"
+                                       Text="{Binding ProductSync.SkuCode}" />
+                <Label Text="{x:Static language:AppResources.GENERATE_BAR_CODE}" x:Name="BarcodeLabel" HorizontalTextAlignment="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="GenerateBarCode"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+            <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
+
+                <entryField:EntryField Placeholder="{x:Static language:AppResources.PRODUCT_PAGE_PRODUCT_QR_CODE}"
+                                       Style="{StaticResource DefaultTextField}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.BarcodeAlt}"
+                                       Text="{Binding ProductSync.QrCode}" />
+                <Label Text="{x:Static language:AppResources.GENERATE_QR_CODE}" x:Name="QrCodeLabel"  HorizontalTextAlignment="End">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="GenerateQrCode"/>
+                    </Label.GestureRecognizers>
+                </Label>
+            </StackLayout>
+        </Grid>
+    </ScrollView>
+</base:BasePage>

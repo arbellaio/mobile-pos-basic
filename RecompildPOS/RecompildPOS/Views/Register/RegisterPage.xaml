@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:magicGradients="clr-namespace:MagicGradients;assembly=MagicGradients"
+               xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:register="clr-namespace:RecompildPOS.ViewModels.Register;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Register.RegisterPage"
+               BackgroundImageSource="bg2a.jpg"
+               NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <register:RegisterViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <Grid>
+            <!-- <magicGradients:GradientView> -->
+            <!--     <magicGradients:GradientView.GradientSource> -->
+            <!--         <magicGradients:GradientCollection> -->
+            <!--             <magicGradients:LinearGradient Angle="155"> -->
+            <!--                 <magicGradients:GradientStop Color="#79E2E1" Offset="0" /> -->
+            <!--                 <magicGradients:GradientStop Color="#7BE2DE" Offset="0.4" /> -->
+            <!--                 <magicGradients:GradientStop Color="#70E3BE" Offset="0.6" /> -->
+            <!--                 <magicGradients:GradientStop Color="#70E3BE" Offset="1" /> -->
+            <!--             </magicGradients:LinearGradient> -->
+            <!--         </magicGradients:GradientCollection> -->
+            <!--     </magicGradients:GradientView.GradientSource> -->
+            <!-- </magicGradients:GradientView> -->
+
+            <Grid Padding="10">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+
+                <ImageButton BackgroundColor="Transparent" CornerRadius="80" Grid.Row="0" Scale="0.5" Aspect="AspectFit" Source="recopos.png" Margin="0,0,0,10">
+                </ImageButton>
+
+
+                <Frame Grid.Row="1" BackgroundColor="Transparent" CornerRadius="10" Margin="10,0,10,0">
+                    <StackLayout>
+                        <entryField:EntryField EntryIcon="{x:Static icons:FontAwesomeIcons.User}"
+                                               Placeholder="{x:Static language:AppResources.LOGIN_PAGE_USER_NAME}"
+                                               Text="{Binding User.Username}"
+                                               Style="{StaticResource DefaultLoginTextField}" />
+
+                        <entryField:EntryField EntryIcon="{x:Static icons:FontAwesomeIcons.Key}"
+                                               Text="{Binding User.Password}"
+                                               Placeholder="{x:Static language:AppResources.LOGIN_PAGE_PASSWORD}"
+                                               IsPassword="True" Style="{StaticResource DefaultLoginTextField}" />
+
+                        <!-- <entryField:EntryField EntryIcon="{x:Static icons:FontAwesomeIcons.Building}" -->
+                        <!--                        Text="{Binding Business.Name}" -->
+                        <!--                        Placeholder="{x:Static language:AppResources.REGISTER_PAGE_BUSINESS_NAME}" -->
+                        <!--                        Style="{StaticResource DefaultTextField}" /> -->
+
+                        <entryField:EntryField EntryIcon="{x:Static icons:FontAwesomeIcons.At}"
+                                               Text="{Binding User.Email}"
+                                               Placeholder="{x:Static language:AppResources.REGISTER_PAGE_EMAIL_ADDRESS}"
+                                               Style="{StaticResource DefaultLoginTextField}" />
+
+                        <!-- <entryField:EntryField EntryIcon="{x:Static icons:FontAwesomeIcons.Mobile}" -->
+                        <!--                        Text="{Binding User.PhoneNumber}" -->
+                        <!--                        Placeholder="{x:Static language:AppResources.REGISTER_PAGE_MOBILE_NUMBER}" -->
+                        <!--                        Style="{StaticResource DefaultTextField}" /> -->
+
+
+                        <Button Style="{StaticResource DefaultButtonStyleWhiteText}"
+                                Text="{x:Static language:AppResources.REGISTER_PAGE_REGISTER}" Margin="0,5,0,0"
+                                Command="{Binding RegisterBusinessCommand}" />
+
+                            <Button Style="{StaticResource DefaultButtonStyleWhiteText}" IsVisible="False"
+                                    Text="{x:Static language:AppResources.SYNC_PAGE_SYNC}" Margin="0,5,0,0"
+                                    Command="{Binding SyncBusinessCommand}" />
+
+                        <Button Style="{StaticResource DefaultButtonStyleWhiteText}" BackgroundColor="Transparent"
+                                Text="{x:Static language:AppResources.REGISTER_PAGE_ALREADY_USER}"
+                                Command="{Binding GoBackPageCommand}" />
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </Grid>
+    </ScrollView>
+</base:BasePage>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:menu="clr-namespace:RecompildPOS.ViewModels.Menu;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Menu.MenuPage"
+               x:Name="Menu"
+               Title="{x:Static language:AppResources.MENU_PAGE}"
+               BackgroundColor="White">
+
+    <ContentPage.BindingContext>
+        <menu:MenuViewModel/>
+    </ContentPage.BindingContext>
+    <Grid
+        Padding="10"
+        ColumnSpacing="10"
+        RowSpacing="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Button
+            x:Name="SalesOrderButton"
+            Grid.Row="0"
+            Grid.Column="0"
+            Text="{x:Static language:AppResources.MENU_PAGE_SALES_ORDER}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.CashRegister}"
+                                 FontFamily="FontAwesomeSolid" Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            x:Name="PurchaseOrderButton"
+            Grid.Row="0"
+            Grid.Column="1"
+            Text="{x:Static language:AppResources.MENU_PAGE_PURCHASE_ORDER}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.ShoppingCart}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            x:Name="AccountsButton"
+            Grid.Row="1"
+            Grid.Column="0"
+            Command="{Binding AccountsCommand}"
+            Text="{x:Static language:AppResources.MENU_PAGE_ACCOUNTS}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.User}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            x:Name="EndOfDayReportButton"
+            Grid.Row="1"
+            Grid.Column="1"
+            Text="{x:Static language:AppResources.MENU_PAGE_END_OF_DAY}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.FileInvoice}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            x:Name="FinancialTransactionsButton"
+            Grid.Row="2"
+            Grid.Column="0"
+            Text="{x:Static language:AppResources.MENU_PAGE_FINANCIAL}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Receipt}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            x:Name="BusinessProfileButton"
+            Grid.Row="2"
+            Grid.Column="1"
+            Command="{Binding BusinessCommand}"
+            Text="{x:Static language:AppResources.MENU_PAGE_BUSINESS_PROFILE}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Briefcase}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+        <Button
+        x:Name="BusinessFinancesButton"
+        Grid.Row="3"
+        Grid.Column="0"
+        Command="{Binding BusinessFinancesCommand}"
+        Text="{x:Static language:AppResources.MENU_PAGE_BUSINESS_FINANCES}"
+        Style="{StaticResource DefaultButtonStyleGrayText}">
+        <Button.ImageSource>
+            <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.ChartBar}"
+                             FontFamily="FontAwesomeSolid"
+                             Color="Gray" />
+        </Button.ImageSource>
+        </Button>
+
+        <Button
+            x:Name="InventoryButton"
+            Grid.Row="3"
+            Grid.Column="1"
+            Text="{x:Static language:AppResources.MENU_PAGE_INVENTORY}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Inventory}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+
+        <Button
+            x:Name="UsersButton"
+            Grid.Row="4"
+            Grid.Column="0"
+            Text="{x:Static language:AppResources.MENU_PAGE_USERS}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.UserEdit}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+
+
+        <Button
+            x:Name="ProductsButton"
+            Grid.Row="4"
+            Grid.Column="1"
+            Text="{x:Static language:AppResources.MENU_PAGE_PRODUCTS}"
+            Style="{StaticResource DefaultButtonStyleGrayText}">
+            <Button.ImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.BarcodeScan}"
+                                 FontFamily="FontAwesomeSolid"
+                                 Color="Gray" />
+            </Button.ImageSource>
+        </Button>
+    </Grid>
+</base:BasePage>

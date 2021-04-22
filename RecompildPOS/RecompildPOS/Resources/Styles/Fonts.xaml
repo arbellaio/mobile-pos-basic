@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="RecompildPOS.Resources.Styles.Fonts"
+                    xmlns:resources="clr-namespace:RecompildPOS.Resources.Strings;assembly=RecompildPOS">
+
+    <!-- <OnPlatform x:Key="RobotoRegular" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-Regular.ttf#Roboto-Regular</On> -->
+    <!--         <On Platform="iOS">Roboto-Regular</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-Regular.ttf#Roboto</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="RobotoBlack" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-Black.ttf#Roboto-Black</On> -->
+    <!--         <On Platform="iOS">Roboto-Black</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-Black.ttf#Roboto-Black</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="RobotoBlackItalic" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-BlackItalic.ttf#Roboto-BlackItalic</On> -->
+    <!--         <On Platform="iOS">Roboto-BlackItalic</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-BlackItalic.ttf#Roboto-Black</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+   
+    <!-- <OnPlatform x:Key="RobotoBold" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-Bold.ttf#Roboto-Bold</On> -->
+    <!--         <On Platform="iOS">Roboto-Bold</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-Bold.ttf#Roboto</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="RobotoBoldItalic" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-BoldItalic.ttf#Roboto-BoldItalic</On> -->
+    <!--         <On Platform="iOS">Roboto-BoldItalic</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-BoldItalic.ttf#Roboto</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="RobotoItalic" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-Italic.ttf#Roboto-Italic</On> -->
+    <!--         <On Platform="iOS">Roboto-Italic</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-Italic.ttf#Roboto</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+  
+
+    <!-- <OnPlatform x:Key="RobotoLight" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-Light.ttf#Roboto-Light</On> -->
+    <!--         <On Platform="iOS">Roboto-Light</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-Light.ttf#Roboto-Light</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+
+    <!-- <OnPlatform x:Key="RobotoLightItalic" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-LightItalic.ttf#Roboto-LightItalic</On> -->
+    <!--         <On Platform="iOS">Roboto-LightItalic</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-LightItalic.ttf#Roboto-Light</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="RobotoThin" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-Thin.ttf#Roboto-Thin</On> -->
+    <!--         <On Platform="iOS">Roboto-Thin</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-Thin.ttf#Roboto-Thin</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="RobotoThinItalic" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">Roboto-ThinItalic.ttf#Roboto-ThinItalic</On> -->
+    <!--         <On Platform="iOS">Roboto-ThinItalic</On> -->
+    <!--         <On Platform="UWP">Assets/Roboto-ThinItalic.ttf#Roboto-Thin</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="FontAwesomeLight" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">FontAwesome5Light.otf#Font Awesome 5 Pro Light</On> -->
+    <!--         <On Platform="iOS">FontAwesome5Pro-Light</On> -->
+    <!--         <On Platform="UWP">Assets/FontAwesome5Light.otf#Font Awesome 5 Pro</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="FontAwesomeRegular" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">FontAwesome5Regular.otf#Font Awesome 5 Pro Regular</On> -->
+    <!--         <On Platform="iOS">FontAwesome5Pro-Regular</On> -->
+    <!--         <On Platform="UWP">Assets/FontAwesome5Regular.otf#Font Awesome 5 Pro</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+    <!-- <OnPlatform x:Key="FontAwesomeSolid" x:TypeArguments="x:String"> -->
+    <!--     <OnPlatform.Platforms> -->
+    <!--         <On Platform="Android">FontAwesome5Solid.otf#Font Awesome 5 Pro Solid</On> -->
+    <!--         <On Platform="iOS">FontAwesome5Pro-Solid</On> -->
+    <!--         <On Platform="UWP">Assets/FontAwesome5Solid.otf#Font Awesome 5 Pro</On> -->
+    <!--     </OnPlatform.Platforms> -->
+    <!-- </OnPlatform> -->
+
+</ResourceDictionary>

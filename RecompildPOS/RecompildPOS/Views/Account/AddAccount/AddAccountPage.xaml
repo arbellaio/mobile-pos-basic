@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:accounts="clr-namespace:RecompildPOS.ViewModels.Accounts;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Account.AddAccount.AddAccountPage"
+               BackgroundColor="#F7F7F8"
+               NavigationPage.HasBackButton="False">
+
+    <ContentPage.BindingContext>
+        <accounts:AddAccountViewModel />
+    </ContentPage.BindingContext>
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_TITLE}"
+                   Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.x}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+
+    <ScrollView>
+        <Frame CornerRadius="10" BackgroundColor="White" Margin="20">
+            <Grid Padding="5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Image HorizontalOptions="CenterAndExpand"
+                       Grid.Column="0"
+                       Grid.Row="0">
+                    <Image.Source>
+                        <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.UserCircle}" Size="60"
+                                         Color="Gray"
+                                         FontFamily="FontAwesomeSolid" />
+                    </Image.Source>
+                </Image>
+
+                <entryField:EntryField Grid.Row="1" Grid.Column="0"
+                                       Text="{Binding Account.AccountCode}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.AddressCard}"
+                                       Placeholder="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_ACCOUNT_CODE}"
+                                       Style="{StaticResource DefaultTextField}" />
+
+                <entryField:EntryField Grid.Row="2" Grid.Column="0"
+                                       Text="{Binding Account.Name}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.User}"
+                                       Placeholder="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_NAME}"
+                                       Style="{StaticResource DefaultTextField}" />
+
+                <entryField:EntryField Grid.Row="3" Grid.Column="0"
+                                       Text="{Binding Account.PhoneNumber}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.Phone}"
+                                       Placeholder="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_PHONE_NUMBER}"
+                                       Style="{StaticResource DefaultTextField}" />
+
+                <entryField:EntryField Grid.Row="4" Grid.Column="0"
+                                       Text="{Binding Account.Email}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.At}"
+                                       Placeholder="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_EMAIL}"
+                                       Style="{StaticResource DefaultTextField}" />
+
+                <entryField:EntryField Grid.Row="5" Grid.Column="0"
+                                       Text="{Binding Account.Address}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.AddressCard}"
+                                       Placeholder="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_ADDRESS}"
+                                       Style="{StaticResource DefaultTextField}" />
+
+                <entryField:EntryField Grid.Row="6" Grid.Column="0"
+                                       Text="{Binding Account.Balance}"
+                                       Keyboard="Numeric"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.CreditCard}"
+                                       Placeholder="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_BALANCE}"
+                                       Style="{StaticResource DefaultTextField}" />
+
+                <entryField:EntryField Grid.Row="7" Grid.Column="0"
+                                       Text="{Binding Account.CreditLimit}"
+                                       Keyboard="Numeric"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.CreditCardBlank}"
+                                       Placeholder="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_CREDIT_LIMIT}"
+                                       Style="{StaticResource DefaultTextField}" />
+
+                <Button Grid.Row="8" Grid.Column="0" Style="{StaticResource DefaultButtonStyleWhiteText}"
+                        Text="{x:Static language:AppResources.ADD_ACCOUNT_PAGE_SAVE_ACCOUNT}"
+                        Command="{Binding SaveAccountCommand}" />
+
+            </Grid>
+        </Frame>
+    </ScrollView>
+</base:BasePage>

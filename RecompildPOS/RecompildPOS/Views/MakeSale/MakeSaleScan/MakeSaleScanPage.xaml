@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+             xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+             xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+             xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+             xmlns:itemPicker="clr-namespace:RecompildPOS.Components.ItemPicker;assembly=RecompildPOS"
+             xmlns:valueSwitch="clr-namespace:RecompildPOS.Components.ValueSwitch;assembly=RecompildPOS"
+             xmlns:cSwitch="clr-namespace:RecompildPOS.Components.CSwitch;assembly=RecompildPOS"
+             xmlns:makeSaleScan="clr-namespace:RecompildPOS.ViewModels.MakeSale.MakeSaleScan;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Class="RecompildPOS.Views.MakeSale.MakeSaleScan.MakeSaleScanPage"
+             NavigationPage.HasBackButton="False"
+             >
+
+    <ContentPage.BindingContext>
+        <makeSaleScan:MakeSaleScanViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.CircleNotch}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static language:AppResources.MAKE_SALE_PAGE_TITLE}"
+                   Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <Grid Margin="10,20,10,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+            <entryField:EntryField x:Name="ScanEntry" Placeholder="Scan or Enter Product" Text="{Binding Code}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"  EntryIcon="{x:Static icons:FontAwesomeIcons.Scanner}" />
+        <Button Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Text="Scan Product From Camera" Command="{Binding GoToCameraScanPageCommand}"  BackgroundColor="Bisque">
+                <Button.ImageSource>
+                    <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Scanner}" FontFamily="FontAwesomeRegular" Color="Gray" />
+                </Button.ImageSource>
+            </Button>
+    </Grid>
+</base:BasePage>    

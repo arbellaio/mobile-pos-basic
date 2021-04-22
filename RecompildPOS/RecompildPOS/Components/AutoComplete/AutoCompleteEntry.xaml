@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:searchBar="clr-namespace:RecompildPOS.Components.SearchBar;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Name="View"
+             BindingContext="{x:Reference View}"
+             x:Class="RecompildPOS.Components.AutoComplete.AutoCompleteEntry">
+    <AbsoluteLayout>
+        <searchBar:SearchField SearchCommand="{Binding SearchCommand}" BackgroundColor="#f9f9f9" TextColor="#FF464859" PlaceholderColor="#646b7a" x:Name="SearchBar" Placeholder="Type here..." AbsoluteLayout.LayoutBounds="15,70,285,38" AbsoluteLayout.LayoutFlags="None"/>
+        <ListView x:Name="SearchListView" IsVisible="False"   CachingStrategy="RecycleElement" BackgroundColor="White" ItemTapped="ListView_OnItemTapped" AbsoluteLayout.LayoutBounds="20,110,269,160" AbsoluteLayout.LayoutFlags="None">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame>
+                            <StackLayout BackgroundColor="White">
+                                <Label Text="{Binding .}" FontSize="16" TextColor="#FF464859"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </AbsoluteLayout>
+</ContentView>

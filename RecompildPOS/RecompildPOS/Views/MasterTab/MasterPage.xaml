@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:menu="clr-namespace:RecompildPOS.Views.Menu;assembly=RecompildPOS"
+                  xmlns:strings="clr-namespace:RecompildPOS.Resources.Strings;assembly=RecompildPOS"
+                  xmlns:abstractions="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+                  xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+                  xmlns:masterTab="clr-namespace:RecompildPOS.Views.MasterTab;assembly=RecompildPOS"
+                  mc:Ignorable="d"
+                  IsPresented="False"
+                  x:Name="Page"
+                  BindingContext="{x:Reference Page}"
+                  x:Class="RecompildPOS.Views.MasterTab.MasterPage">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+            <ImageButton Source="menu.png" Scale="0.7" BackgroundColor="Transparent" Clicked="ImageButton_OnClicked"
+                         HorizontalOptions="Start" />
+            <Label Text="{x:Static strings:AppStrings.AppName}" VerticalOptions="Center"
+                   HorizontalOptions="CenterAndExpand" HorizontalTextAlignment="Center"
+                   Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <MasterDetailPage.Master>
+        <ContentPage Title="Circle" IconImageSource="newIcon.png">
+            <StackLayout BackgroundColor="#c6495a">
+                <StackLayout Margin="45,5,20,0"  Padding="0,0,0,10" Orientation="Horizontal">
+                    <abstractions:CircleImage HorizontalOptions="Start">
+                        <abstractions:CircleImage.Source>
+                            <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.UserCircle}" Size="80" FontFamily="FontAwesomeRegular" Color="White" />
+                        </abstractions:CircleImage.Source>
+                    </abstractions:CircleImage>
+                    <StackLayout VerticalOptions="Center">
+                    <Label Text="Faizan Aamer" Margin="10,0,0,0" VerticalTextAlignment="Center" Style="{StaticResource DefaultLabelStyleWhiteText}"/>
+                    <Label Text="Position" Margin="10,0,0,0" VerticalTextAlignment="Center" Style="{StaticResource DefaultLabelStyleWhiteText}"/>
+                    </StackLayout>
+                </StackLayout>
+                <ListView x:Name="NavigationDrawerList"
+                          RowHeight="50"
+                          SeparatorVisibility="None"
+                          VerticalScrollBarVisibility="Never"
+                          ItemTapped="OnMenuSelected"
+                          BackgroundColor="WhiteSmoke">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout VerticalOptions="FillAndExpand"
+                                             Orientation="Horizontal"
+                                             Padding="20,0,0,0"
+                                             Margin="0,0,0,0"
+                                             Spacing="10">
+                                    <Image
+                                        WidthRequest="30"
+                                        HeightRequest="30"
+                                        VerticalOptions="Center">
+                                        <Image.Source>
+                                            <FontImageSource Glyph="{Binding Icon}" Color="Gray"
+                                                             FontFamily="FontAwesomeRegular" />
+                                        </Image.Source>
+                                    </Image>
+                                    <Label Text="{Binding Title}"
+                                           FontSize="Medium"
+                                           Style="{StaticResource DefaultLabelStyleGrayText}"
+                                           VerticalOptions="Center" />
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <masterTab:TabbedMenuPage />
+    </MasterDetailPage.Detail>
+</MasterDetailPage>

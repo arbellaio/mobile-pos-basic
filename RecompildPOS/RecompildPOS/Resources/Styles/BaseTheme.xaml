@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xaml-comp compile="true" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    xmlns:resources="clr-namespace:RecompildPOS.Resources.Strings;assembly=RecompildPOS"
+                    xmlns:styles="clr-namespace:RecompildPOS.Resources.Styles;assembly=RecompildPOS"
+                    xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+                    xmlns:coreUtils="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+                    xmlns:eliteElements="clr-namespace:eliteKit.eliteElements;assembly=eliteKit"
+                    xmlns:itemPicker="clr-namespace:RecompildPOS.Components.ItemPicker;assembly=RecompildPOS">
+
+
+    <ResourceDictionary.MergedDictionaries>
+        <styles:Fonts />
+    </ResourceDictionary.MergedDictionaries>
+
+   
+
+
+    <!-- Label Styles -->
+    <Style x:Key="PageTitleStyle" TargetType="Label">
+        <Setter Property="FontFamily" Value="Regular"/>
+        <Setter Property="FontSize" Value="Large"/>
+        <Setter Property="HorizontalTextAlignment" Value="Center"/>
+        <Setter Property="VerticalTextAlignment" Value="Center"/>
+        <Setter Property="HorizontalOptions" Value="CenterAndExpand"/>
+        <Setter Property="VerticalOptions" Value="CenterAndExpand"/>
+        <Setter Property="TextColor" Value="White"/>
+    </Style>
+
+    <Style x:Key="DefaultLabelStyleWhiteText" TargetType="Label">
+        <Setter Property="FontFamily" Value="Regular"/>
+        <Setter Property="TextColor" Value="White"/>
+        <Setter Property="FontSize" Value="Default"/>
+    </Style>
+
+    <Style x:Key="DefaultLabelStyleGrayText" TargetType="Label">
+        <Setter Property="FontFamily" Value="Regular"/>
+        <Setter Property="FontSize" Value="Default"/>
+        <Setter Property="TextColor" Value="Gray"/>
+    </Style>
+
+
+    <!-- Entry Styles -->
+    
+    <Style x:Key="DefaultEntryStyleGray" TargetType="Entry">
+        <Setter Property="FontSize" Value="Default"/>
+        <Setter Property="FontFamily" Value="Regular"/>
+        <Setter Property="TextColor" Value="Gray"/>
+    </Style>
+
+    
+    <!--  TextField  -->
+   
+    <Style x:Key="DefaultTextField" TargetType="entryField:EntryField">
+        <Setter Property="BorderColor" Value="Gray" />
+        <Setter Property="IsTopBorderVisibleWhenValid" Value="True" />
+        <Setter Property="IsBottomBorderVisibleWhenValid" Value="True" />
+        <Setter Property="PlaceholderColor" Value="Gray" />
+        <Setter Property="EntryBackgroundColor" Value="White"/>
+        <!-- //#F7F7F8 -->
+        <Setter Property="TextColor" Value="Gray" />
+    </Style>
+
+    <Style x:Key="DefaultLoginTextField" TargetType="entryField:EntryField">
+        <Setter Property="BorderColor" Value="White" />
+        <Setter Property="IsTopBorderVisibleWhenValid" Value="False" />
+        <Setter Property="IsBottomBorderVisibleWhenValid" Value="True" />
+        <Setter Property="PlaceholderColor" Value="White" />
+        <Setter Property="EntryBackgroundColor" Value="Transparent"/>
+        <!-- //#F7F7F8 -->
+        <Setter Property="TextColor" Value="White" />
+    </Style>
+
+
+    <!--  ItemPicker  -->
+
+    <Style x:Key="DefaultItemPicker" TargetType="itemPicker:ItemPicker">
+        <Setter Property="BorderColor" Value="Gray" />
+        <Setter Property="IsTopBorderVisibleWhenValid" Value="True" />
+        <Setter Property="IsBottomBorderVisibleWhenValid" Value="True" />
+        <Setter Property="PlaceholderColor" Value="Gray" />
+        <Setter Property="EntryBackgroundColor" Value="White"/>
+        <Setter Property="TextColor" Value="Gray" />
+    </Style>
+
+
+    <!-- Button Styles -->
+    <Style x:Key="DefaultButtonStyleWhiteText" TargetType="Button">
+        <Setter Property="TextColor" Value="White"></Setter>
+        <Setter Property="BorderRadius" Value="10"></Setter>
+        <Setter Property="BackgroundColor" Value="#B71B32"></Setter>
+        <Setter Property="FontFamily" Value="Regular"/>
+    </Style>
+
+    <Style x:Key="DefaultStepperButtonStyleWhiteText" TargetType="Button">
+        <Setter Property="TextColor" Value="Gray"></Setter>
+        <Setter Property="CornerRadius" Value="50"></Setter>
+        <Setter Property="BackgroundColor" Value="NavajoWhite"></Setter>
+        <Setter Property="FontFamily" Value="Regular"/>
+    </Style>
+
+
+    <Style x:Key="DefaultButtonStyleGrayText" TargetType="Button">
+        <Setter Property="TextColor" Value="Gray"></Setter>
+        <Setter Property="BorderRadius" Value="10"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="BackgroundColor" Value="#F7F7F8"></Setter>
+        <Setter Property="FontFamily" Value="Regular"/>
+    </Style>
+
+    <Style x:Key="DefaultButtonStyleCapsuleGrayText" TargetType="Button">
+        <Setter Property="TextColor" Value="Gray"></Setter>
+        <Setter Property="BorderRadius" Value="10"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="BackgroundColor" Value="#B71B32"></Setter>
+        <Setter Property="FontFamily" Value="Regular"/>
+    </Style>
+
+    <Style x:Key="DefaultButtonNavajoStyleGrayText" TargetType="Button">
+        <Setter Property="TextColor" Value="Gray"></Setter>
+        <Setter Property="BorderRadius" Value="10"></Setter>
+        <Setter Property="FontAttributes" Value="Bold"></Setter>
+        <Setter Property="BackgroundColor" Value="NavajoWhite"></Setter>
+        <Setter Property="FontFamily" Value="Regular"/>
+    </Style>
+
+
+
+    <!--  Font Icon  -->
+
+    <Style x:Key="FontIconBase" TargetType="Label">
+        <Setter Property="FontFamily" Value="FontAwesomeLight" />
+    </Style>
+
+    <Style
+        x:Key="ErrorFontIcon"
+        BasedOn="{StaticResource FontIconBase}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="TextColor" Value="Red" />
+        <Setter Property="Text" Value="{x:Static coreUtils:FontAwesomeIcons.TimesCircle}" />
+    </Style>
+
+    <Style
+        x:Key="SuccessFontIcon"
+        BasedOn="{StaticResource FontIconBase}"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="22" />
+        <Setter Property="TextColor" Value="SpringGreen" />
+        <Setter Property="Text" Value="{x:Static coreUtils:FontAwesomeIcons.CheckCircle}" />
+    </Style>
+
+    <!--  Font Icon  -->
+
+    <Style
+        x:Key="ErrorLabel"
+        TargetType="Label">
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="TextColor" Value="Red" />
+    </Style>
+
+</ResourceDictionary>

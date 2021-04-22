@@ -1,0 +1,13 @@
+E:\Personal Projects\XamPOS\RecompildPOS.Database\bin\Debug\netstandard2.0\RecompildPOS.Database.deps.json
+E:\Personal Projects\XamPOS\RecompildPOS.Database\bin\Debug\netstandard2.0\RecompildPOS.Database.dll
+E:\Personal Projects\XamPOS\RecompildPOS.Database\bin\Debug\netstandard2.0\RecompildPOS.Database.pdb
+E:\Personal Projects\XamPOS\RecompildPOS.Database\bin\Debug\netstandard2.0\RecompildPOS.Models.dll
+E:\Personal Projects\XamPOS\RecompildPOS.Database\bin\Debug\netstandard2.0\RecompildPOS.Models.pdb
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\RecompildPOS.Database.csprojAssemblyReference.cache
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\RecompildPOS.Database.AssemblyInfoInputs.cache
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\RecompildPOS.Database.AssemblyInfo.cs
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\RecompildPOS.Database.csproj.CoreCompileInputs.cache
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\XamlC.stamp
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\RecompildPOS.Database.csproj.CopyComplete
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\RecompildPOS.Database.dll
+E:\Personal Projects\XamPOS\RecompildPOS.Database\obj\Debug\netstandard2.0\RecompildPOS.Database.pdb

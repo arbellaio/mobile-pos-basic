@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:coreUtils="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+             xmlns:valueConverters="clr-namespace:RecompildPOS.ValueConverters;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Name="SearchFieldRootView"
+             x:Class="RecompildPOS.Components.SearchBar.SearchField">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <valueConverters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+            <valueConverters:StringLengthToBoolConverter x:Key="StringLengthToBoolConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+
+        <Grid ColumnSpacing="0" CompressedLayout.IsHeadless="True" RowSpacing="0">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="1" />
+            </Grid.RowDefinitions>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="1" />
+            </Grid.ColumnDefinitions>
+
+
+
+            <!--Left Border-->
+            <BoxView Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" WidthRequest="1" Color="{Binding Source={x:Reference SearchFieldRootView}, Path=BorderColor}">
+                <BoxView.Triggers>
+                    <MultiTrigger TargetType="BoxView">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference Entry}, Path=IsFocused}" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <!-- <Setter Property="Color" Value="{StaticResource SearchFieldDebounceBorderColor}"/> -->
+                        <Setter Property="WidthRequest" Value="5"/>
+                    </MultiTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+
+            <!--Right Border-->
+            <BoxView Grid.Row="0" Grid.RowSpan="3" Grid.Column="4" WidthRequest="1" Color="{Binding Source={x:Reference SearchFieldRootView}, Path=BorderColor}">
+                <BoxView.Triggers>
+                    <MultiTrigger TargetType="BoxView">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference Entry}, Path=IsFocused}" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <!-- <Setter Property="Color" Value="{StaticResource SearchFieldDebounceBorderColor}"/> -->
+                        <Setter Property="WidthRequest" Value="5"/>
+                    </MultiTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+
+
+
+            <!--Top Border-->
+            <BoxView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HeightRequest="1" IsVisible="{Binding Source={x:Reference SearchFieldRootView}, Path=IsTopBorderVisible}" VerticalOptions="Start" Color="{Binding Source={x:Reference SearchFieldRootView}, Path=BorderColor}">
+                <BoxView.Triggers>
+                    <MultiTrigger TargetType="BoxView">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference Entry}, Path=IsFocused}" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <!-- <Setter Property="Color" Value="{StaticResource SearchFieldDebounceBorderColor}"/> -->
+                        <Setter Property="WidthRequest" Value="5"/>
+                    </MultiTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+
+
+            <!--  Search bar icon  -->
+            <ImageButton Grid.Row="1" Grid.Column="1" Margin="10,0,0,0" HeightRequest="60" VerticalOptions="Center" BackgroundColor="Transparent">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeLight" Glyph="{x:Static coreUtils:FontAwesomeIcons.Search}" Size="24" Color="Gray" />
+                </ImageButton.Source>
+            </ImageButton>
+
+            <!--  Grid to keep entry standard height  -->
+            <Grid Grid.Row="1" Grid.Column="2" HeightRequest="90" CompressedLayout.IsHeadless="True" VerticalOptions="CenterAndExpand">
+
+                <!--  Stack for entry  -->
+                <StackLayout CompressedLayout.IsHeadless="True" Spacing="5" VerticalOptions="CenterAndExpand">
+
+                    <Entry x:Name="Entry" Margin="15,0" Style="{StaticResource SearchEntry}" IsEnabled="{Binding Source={x:Reference SearchFieldRootView}, Path=IsEnabled}"  Keyboard="{Binding Source={x:Reference SearchFieldRootView}, Path=Keyboard}" Placeholder="{Binding Source={x:Reference SearchFieldRootView}, Path=Placeholder}" PlaceholderColor="{Binding Source={x:Reference SearchFieldRootView}, Path=PlaceholderColor}" Text="{Binding Source={x:Reference SearchFieldRootView}, Path=Text}" TextColor="{Binding Source={x:Reference SearchFieldRootView}, Path=TextColor}" TextChanged="Text_Change" Visual="BorderlessEntry" VerticalOptions="Center">
+                    </Entry>
+
+                </StackLayout>
+            </Grid>
+
+            <!--Cancel Image Button-->
+            <ImageButton Grid.Row="1" Grid.Column="3" Margin="0,0,10,0" HeightRequest="60" HorizontalOptions="End" VerticalOptions="Center" Command="{Binding Source={x:Reference SearchFieldRootView}, Path=CancelIconCommand}" IsVisible="{Binding Source={x:Reference SearchFieldRootView}, Path=Text, Converter={x:StaticResource StringNotNullOrEmptyBoolConverter}}" BackgroundColor="Transparent">
+                <ImageButton.Source>
+                    <FontImageSource FontFamily="FontAwesomeLight" Glyph="{x:Static coreUtils:FontAwesomeIcons.X}" Size="24" Color="Gray" />
+                </ImageButton.Source>
+            </ImageButton>
+
+
+            <!--Bottom Border-->
+            <BoxView Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" HeightRequest="1" IsVisible="{Binding Source={x:Reference SearchFieldRootView}, Path=IsBottomBorderVisible}" VerticalOptions="EndAndExpand" Color="{Binding Source={x:Reference SearchFieldRootView}, Path=BorderColor}">
+                <BoxView.Triggers>
+                    <MultiTrigger TargetType="BoxView">
+                        <MultiTrigger.Conditions>
+                            <BindingCondition Binding="{Binding Source={x:Reference Entry}, Path=IsFocused}" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <!-- <Setter Property="Color" Value="{StaticResource SearchFieldDebounceBorderColor}"/> -->
+                        <Setter Property="WidthRequest" Value="5"/>
+                    </MultiTrigger>
+                </BoxView.Triggers>
+            </BoxView>
+
+        </Grid>
+
+    </ContentView.Content>
+
+
+    <!--  Gesture recognizer to update focus even tapping on outside entry writable area  -->
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapped" />
+    </ContentView.GestureRecognizers>
+
+</ContentView>

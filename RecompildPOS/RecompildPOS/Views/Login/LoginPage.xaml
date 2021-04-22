@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:resources="clr-namespace:RecompildPOS.Resources.Strings;assembly=RecompildPOS"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:magicGradients="clr-namespace:MagicGradients;assembly=MagicGradients"
+               xmlns:login="clr-namespace:RecompildPOS.ViewModels.Login;assembly=RecompildPOS"
+               xmlns:eliteElements="clr-namespace:eliteKit.eliteElements;assembly=eliteKit"
+               xmlns:colors="clr-namespace:RecompildPOS.Resources.Colors;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               BackgroundColor="Bisque"
+               x:Class="RecompildPOS.Views.Login.LoginPage"
+               NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.BindingContext>
+        <login:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid CompressedLayout.IsHeadless="True">
+        <Grid Padding="10"  CompressedLayout.IsHeadless="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="300" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+
+            <ImageButton BackgroundColor="Transparent" CornerRadius="80" Grid.Row="0" Scale="0.5" Aspect="AspectFit" Source="recopos.png" Margin="0,0,0,10">
+            </ImageButton>
+
+            <Frame Grid.Row="1" CornerRadius="10" BackgroundColor="Transparent" Margin="10,0,10,0">
+                <StackLayout>
+                    <entryField:EntryField EntryIcon="{x:Static icons:FontAwesomeIcons.User}"
+                                           Placeholder="{x:Static language:AppResources.LOGIN_PAGE_USER_NAME}"
+                                           Text="{Binding Username}"
+                                           Style="{StaticResource DefaultLoginTextField}" />
+                    <entryField:EntryField EntryIcon="{x:Static icons:FontAwesomeIcons.Key}"
+                                           Text="{Binding Password}"
+                                           Placeholder="{x:Static language:AppResources.LOGIN_PAGE_PASSWORD}"
+                                           IsPassword="True" Style="{StaticResource DefaultLoginTextField}" />
+                    <StackLayout x:Name="CheckBoxStack" Orientation="Horizontal">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding CheckBoxCommand}" />
+                        </StackLayout.GestureRecognizers>
+                        <CheckBox IsChecked="{Binding IsChecked}" />
+                        <Label Text="{x:Static language:AppResources.LOGIN_PAGE_SAVE_USERNAME_PASSWORD}"
+                               VerticalOptions="Center" VerticalTextAlignment="Center"
+                               Style="{StaticResource DefaultLabelStyleWhiteText}" />
+                    </StackLayout>
+                    <Button
+                        Style="{StaticResource DefaultButtonStyleWhiteText}"
+                        Text="{x:Static language:AppResources.LOGIN_PAGE_LOGIN}"
+                        Command="{Binding LoginCommand}" Margin="0,5,0,0" />
+                    <Button Style="{StaticResource DefaultLabelStyleWhiteText}" FontSize="Small" Command="{Binding RegisterCommand}"
+                            BackgroundColor="Transparent" Text="{x:Static language:AppResources.LOGIN_PAGE_REGISTER}" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </Grid>
+
+</base:BasePage>

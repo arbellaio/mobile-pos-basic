@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+             xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+             xmlns:valueConverters="clr-namespace:RecompildPOS.ValueConverters;assembly=RecompildPOS"
+             xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+             xmlns:expandableView="clr-namespace:RecompildPOS.Components.ExpandableView;assembly=RecompildPOS"
+             xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+             xmlns:accountTabView="clr-namespace:RecompildPOS.ViewModels.TabView.AccountTabView;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Class="RecompildPOS.Views.AccountTabView.AccountTabViewPage"
+             x:Name="AcPage">
+
+    <ContentPage.BindingContext>
+        <accountTabView:AccountTabViewViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueConverters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <StackLayout>
+
+        <StackLayout Padding="10" CompressedLayout.IsHeadless="True"
+                     IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}">
+            <SearchBar x:Name="Search"
+                       Text="{Binding SearchText}"
+                       CancelButtonColor="Gray"
+                       SearchCommand="{Binding SearchCommand}"
+                       SearchCommandParameter="{Binding Text, Source={x:Reference Search}}"
+                       Placeholder="Search Accounts..."
+                       BackgroundColor="White" />
+            <ListView ItemsSource="{Binding Accounts}"
+                      BackgroundColor="White"
+                      HasUnevenRows="True"
+                      ItemSelected="ListView_OnItemSelected">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout>
+                                <Expander>
+                                    <Expander.Header>
+                                        <StackLayout Orientation="Horizontal" Margin="10">
+                                            <Image>
+                                                <Image.Source>
+                                                    <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.UserCircle}"
+                                                                     Size="40"
+                                                                     Color="Gray"
+                                                                     FontFamily="FontAwesomeRegular" />
+                                                </Image.Source>
+                                            </Image>
+                                            <StackLayout Spacing="10" Margin="5,0,0,0">
+                                                <Label Text="{Binding Name}" Style="{StaticResource DefaultLabelStyleGrayText}" />
+                                                <Label Text="{Binding PhoneNumber}"
+                                                       Style="{StaticResource DefaultLabelStyleGrayText}" />
+                                            </StackLayout>
+                                            <Image HorizontalOptions="EndAndExpand">
+                                                <Image.Source>
+                                                    <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Phone}"
+                                                                     Color="Gray"
+                                                                     FontFamily="FontAwesomeRegular" />
+                                                </Image.Source>
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer
+                                                        Command="{Binding BindingContext.CallAccountCommand, Source={x:Reference AcPage}}"
+                                                        CommandParameter="{Binding PhoneNumber}" NumberOfTapsRequired="1" />
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                        </StackLayout>
+                                    </Expander.Header>
+                                    <Expander.Content>
+                                        <StackLayout Orientation="Horizontal" Margin="20,0,20,0" HorizontalOptions="CenterAndExpand" HeightRequest="80">
+                                            <ImageButton  BackgroundColor="NavajoWhite" Padding="50,10,50,10" Command="{Binding BindingContext.MakeSaleCommand, Source={x:Reference AcPage}}" HorizontalOptions="Start" Margin="0,5,30,5">
+                                                <ImageButton.Source>
+                                                    <FontImageSource Size="35" Color="Gray" FontFamily="FontAwesomeRegular" Glyph="{x:Static icons:FontAwesomeIcons.CashRegister}"/>
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                            <!-- <BoxView WidthRequest="2" HorizontalOptions="Center" BackgroundColor="Gray"/> -->
+                                            <ImageButton BackgroundColor="NavajoWhite" Padding="50,10,50,10" HorizontalOptions="CenterAndExpand" Margin="30,5,0,5" >
+                                                <ImageButton.Source>
+                                                    <FontImageSource Size="35" Color="Gray" FontFamily="FontAwesomeRegular" Glyph="{x:Static icons:FontAwesomeIcons.CabinetFiling}"/>
+                                                </ImageButton.Source>
+                                            </ImageButton>
+                                        </StackLayout>
+                                    </Expander.Content>
+                                </Expander>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </StackLayout>
+</base:BasePage>

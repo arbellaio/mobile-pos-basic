@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:behaviors="clr-namespace:RecompildPOS.Behaviors;assembly=RecompildPOS"
+               xmlns:aurora="clr-namespace:Aurora.Controls;assembly=Aurora"
+               xmlns:valueSwitch="clr-namespace:RecompildPOS.Components.ValueSwitch;assembly=RecompildPOS"
+               xmlns:sync="clr-namespace:RecompildPOS.ViewModels.Sync;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Sync.SyncPage">
+
+    <ContentPage.BindingContext>
+        <sync:SyncViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Padding="10">
+            <StackLayout HorizontalOptions="StartAndExpand">
+                <Label VerticalOptions="Center" Text="Sync Duration" FontSize="18" />
+                <Picker x:Name="minutesPicker" VerticalOptions="Center" WidthRequest="70"
+                        SelectedIndexChanged="Handle_SelectedIndexChanged">
+                    <Picker.Items>
+                        <x:String>1min</x:String>
+                        <x:String>2min</x:String>
+                        <x:String>3min</x:String>
+                        <x:String>4min</x:String>
+                        <x:String>5min</x:String>
+                        <x:String>10min</x:String>
+                        <x:String>15min</x:String>
+                        <x:String>30min</x:String>
+                        <x:String>45min</x:String>
+                        <x:String>1hour</x:String>
+                    </Picker.Items>
+                </Picker>
+            </StackLayout>
+            <StackLayout>
+                <Label Text="Auto Sync" VerticalOptions="Center" FontSize="18" />
+                <aurora:CupertinoToggleSwitch />
+            </StackLayout>
+        </StackLayout>
+        <ListView ItemsSource="{Binding SyncList}" RowHeight="50" ItemSelected="Handle_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout>
+                            <StackLayout Padding="10" Margin="10,0,0,0" Orientation="Horizontal">
+                                <ActivityIndicator Color="Brown" VerticalOptions="Center" IsRunning="true" Scale="0.7"
+                                                   IsVisible="{Binding IsSyncing}" />
+                                <Label Style="{StaticResource DefaultLabelStyleGrayText}" FontSize="18"
+                                       VerticalOptions="Center" Text="{Binding Name}" />
+                            </StackLayout>
+                            <BoxView BackgroundColor="Black" HeightRequest="1" WidthRequest="100" />
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            <ListView.Behaviors>
+                <behaviors:EventToCommandBehavior EventName="ItemTapped" Command="{Binding ItemTappedCommand}" />
+            </ListView.Behaviors>
+        </ListView>
+    </StackLayout>
+</base:BasePage>

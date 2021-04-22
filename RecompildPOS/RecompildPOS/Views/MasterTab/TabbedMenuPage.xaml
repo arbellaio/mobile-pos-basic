@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:androidSpecific="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:resources="clr-namespace:RecompildPOS.Resources.Colors;assembly=RecompildPOS"
+             xmlns:menu="clr-namespace:RecompildPOS.Views.Menu;assembly=RecompildPOS"
+             xmlns:strings="clr-namespace:RecompildPOS.Resources.Strings;assembly=RecompildPOS"
+             xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+             xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+             xmlns:quickSaleTabView="clr-namespace:RecompildPOS.Views.QuickSaleTabView;assembly=RecompildPOS"
+             xmlns:accountTabView="clr-namespace:RecompildPOS.Views.AccountTabView;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Class="RecompildPOS.Views.MasterTab.TabbedMenuPage"
+             BarBackgroundColor="#c6495a"
+             SelectedTabColor="White"
+             NavigationPage.HasNavigationBar="True"
+             androidSpecific:TabbedPage.ToolbarPlacement="Bottom"
+             UnselectedTabColor="NavajoWhite"
+             androidSpecific:TabbedPage.IsSwipePagingEnabled="True"
+             >
+
+
+   
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem  Clicked="MenuItem_OnClicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Sync}" Color="White" FontFamily="FontAwesomeRegular" Size="Title" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        
+        <ToolbarItem  Clicked="Logout_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.CircleNotch}" Color="White" FontFamily="FontAwesomeRegular" Size="Title" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+  
+
+   
+    <quickSaleTabView:QuickSalePage Title="Sales">
+        <quickSaleTabView:QuickSalePage.IconImageSource>
+            <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.ShoppingCart}" FontFamily="FontAwesomeRegular" Size="Large" />
+        </quickSaleTabView:QuickSalePage.IconImageSource>
+    </quickSaleTabView:QuickSalePage>
+
+    <accountTabView:AccountTabViewPage Title="Accounts">
+        <accountTabView:AccountTabViewPage.IconImageSource>
+            <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Users}" FontFamily="FontAwesomeRegular" Size="Large" />
+        </accountTabView:AccountTabViewPage.IconImageSource>
+    </accountTabView:AccountTabViewPage>
+
+    <menu:MenuPage Title="Menu">
+        <menu:MenuPage.IconImageSource>
+            <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.Compress}" FontFamily="FontAwesomeRegular" Size="Large" />
+        </menu:MenuPage.IconImageSource>
+    </menu:MenuPage>
+
+  
+</TabbedPage>

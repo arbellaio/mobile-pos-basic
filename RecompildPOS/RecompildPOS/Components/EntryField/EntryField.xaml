@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:valueConverters="clr-namespace:RecompildPOS.ValueConverters;assembly=RecompildPOS"
+             xmlns:components="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Class="RecompildPOS.Components.EntryField.EntryField"
+             x:Name="EntryFieldRootView"
+             Style="{StaticResource DefaultTextField}">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <valueConverters:StringNotNullOrEmptyBoolConverter x:Key="StringNotNullOrEmptyBoolConverter" />
+            <valueConverters:FirstValidationErrorConverter x:Key="FirstValidationErrorConverter" />
+            <valueConverters:HasErrorsConverter x:Key="HasErrorsConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+    <ContentView.Content>
+
+        <!--  Grid for control and bottom error label  -->
+        <Grid CompressedLayout.IsHeadless="True" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Grid for top/bottom borders and control. Not compressed as we need background color variation on errors.  -->
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="{Binding Source={x:Reference EntryFieldRootView}, Path=EntryBackgroundColor}"
+                ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1" />
+                </Grid.ColumnDefinitions>
+
+
+
+                <!--Left Border-->
+                <BoxView Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" WidthRequest="1"  IsVisible="{Binding Source={x:Reference EntryFieldRootView}, Path=IsTopBorderVisibleWhenValid}" Color="{Binding Source={x:Reference EntryFieldRootView}, Path=BorderColor}">
+                    <BoxView.Triggers>
+                        <MultiTrigger TargetType="BoxView">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsDirty}"
+                                    Value="True" />
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsValid}"
+                                    Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="IsVisible" Value="True" />
+                        </MultiTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+
+                <!--Right Border-->
+                <BoxView Grid.Row="0" Grid.RowSpan="3" Grid.Column="4" WidthRequest="1"  IsVisible="{Binding Source={x:Reference EntryFieldRootView}, Path=IsTopBorderVisibleWhenValid}" Color="{Binding Source={x:Reference EntryFieldRootView}, Path=BorderColor}">
+                    <BoxView.Triggers>
+                        <MultiTrigger TargetType="BoxView">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsDirty}"
+                                    Value="True" />
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsValid}"
+                                    Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="IsVisible" Value="True" />
+                        </MultiTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+
+                <!--Top Border-->
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    HeightRequest="1"
+                    IsVisible="{Binding Source={x:Reference EntryFieldRootView}, Path=IsTopBorderVisibleWhenValid}"
+                    VerticalOptions="Start"
+                    Color="{Binding Source={x:Reference EntryFieldRootView}, Path=BorderColor}" />
+
+
+                <!--  Leading validation icon  -->
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="15,0,0,0"
+                    IsVisible="false"
+                    Style="{StaticResource SuccessFontIcon}"
+                    VerticalOptions="Center">
+
+                    <Label.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsDirty}"
+                            TargetType="Label"
+                            Value="True">
+                            <Setter Property="IsVisible" Value="True" />
+                        </DataTrigger>
+
+                        <MultiTrigger TargetType="Label">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsDirty}"
+                                    Value="True" />
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsValid}"
+                                    Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="Style" Value="{StaticResource ErrorFontIcon}" />
+                        </MultiTrigger>
+                    </Label.Triggers>
+
+                </Label>
+
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="15,0,0,0"
+                    IsVisible="True"
+                    VerticalOptions="Center">
+                    <Image.Source>
+                        <FontImageSource Glyph="{Binding Source={x:Reference EntryFieldRootView}, Path=EntryIcon}"
+                                         FontFamily="FontAwesomeRegular"
+                                         Size="Default"
+                                         Color="{Binding Source={x:Reference EntryFieldRootView}, Path=TextColor}"/>
+                    </Image.Source>
+                </Image>
+                <!--  Grid to keep entry standard height  -->
+                <!-- HeightRequest="60" -->
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HeightRequest="50"
+                    CompressedLayout.IsHeadless="True"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand">
+
+                    <!--  Stack for top placeholder and entry  -->
+                    <StackLayout
+                        CompressedLayout.IsHeadless="True"
+                        Spacing="5"
+                        VerticalOptions="CenterAndExpand">
+                        <Label
+                            Margin="15,0,0,0"
+                            FontFamily="Regular"
+                            IsVisible="{Binding Source={x:Reference EntryFieldRootView}, Path=Text, Converter={StaticResource StringNotNullOrEmptyBoolConverter}}"
+                            Text="{Binding Source={x:Reference Entry}, Path=Placeholder}"
+                            TextColor="{Binding Source={x:Reference EntryFieldRootView}, Path=PlaceholderColor}"
+                            VerticalOptions="CenterAndExpand" VerticalTextAlignment="Center"/>
+
+                        <Entry
+                            x:Name="Entry"
+                            Margin="15,0,10,0"
+                            FontFamily="Regular"
+                            IsEnabled="{Binding Source={x:Reference EntryFieldRootView}, Path=IsEnabled}"
+                            IsPassword="{Binding Source={x:Reference EntryFieldRootView}, Path=IsPassword, Mode=OneWay}"
+                            Keyboard="{Binding Source={x:Reference EntryFieldRootView}, Path=Keyboard}"
+                            Placeholder="{Binding Source={x:Reference EntryFieldRootView}, Path=Placeholder}"
+                            PlaceholderColor="{Binding Source={x:Reference EntryFieldRootView}, Path=PlaceholderColor}"
+                            Text="{Binding Source={x:Reference EntryFieldRootView}, Path=Text}"
+                            TextColor="{Binding Source={x:Reference EntryFieldRootView}, Path=TextColor}"
+                            Visual="BorderlessEntry"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center">
+                           
+                        </Entry>
+                    </StackLayout>
+                </Grid>
+
+                <!--  Trailing optional icon  -->
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Margin="0,0,10,0"
+                    HeightRequest="22"
+                    Source="{Binding Source={x:Reference EntryFieldRootView}, Path=TrailingIcon}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference EntryFieldRootView}, Path=TrailingIconCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <BoxView
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    HeightRequest="1"
+                    IsVisible="{Binding Source={x:Reference EntryFieldRootView}, Path=IsBottomBorderVisibleWhenValid}"
+                    VerticalOptions="EndAndExpand"
+                    Color="{Binding Source={x:Reference EntryFieldRootView}, Path=BorderColor}">
+                    <BoxView.Triggers>
+                        <MultiTrigger TargetType="BoxView">
+                            <MultiTrigger.Conditions>
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsDirty}"
+                                    Value="True" />
+                                <BindingCondition
+                                    Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsValid}"
+                                    Value="False" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="IsVisible" Value="True" />
+                        </MultiTrigger>
+                    </BoxView.Triggers>
+                </BoxView>
+            </Grid>
+            <!--  Error label  -->
+            <Label
+                Grid.Row="1"
+                Margin="15"
+                FontFamily="Regular"
+                IsVisible="{Binding Source={x:Reference EntryFieldRootView}, Path=Errors, Converter={StaticResource HasErrorsConverter}}"
+                Style="{StaticResource ErrorLabel}"
+                Text="{Binding Source={x:Reference EntryFieldRootView}, Path=Errors, Converter={StaticResource FirstValidationErrorConverter}}" />
+        </Grid>
+
+    </ContentView.Content>
+
+    <ContentView.Triggers>
+
+         <!-- Error style change -->
+        <MultiTrigger TargetType="{x:Type components:EntryField}">
+            <MultiTrigger.Conditions>
+                <BindingCondition Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsDirty}" Value="True" />
+                <BindingCondition Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsValid}"
+                                  Value="False" />
+            </MultiTrigger.Conditions>
+            <Setter Property="EntryBackgroundColor" Value="White" />
+            <Setter Property="BorderColor" Value="Red" />
+        </MultiTrigger>
+
+        <!--  Disabled  -->
+        <DataTrigger
+            Binding="{Binding Source={x:Reference EntryFieldRootView}, Path=IsEnabled}"
+            TargetType="{x:Type components:EntryField}"
+            Value="False">
+            <Setter Property="Opacity" Value="0.3" />
+        </DataTrigger>
+
+    </ContentView.Triggers>
+
+    <!--  Gesture recognizer to update focus even tapping on outside entry writable area  -->
+    <ContentView.GestureRecognizers>
+        <TapGestureRecognizer NumberOfTapsRequired="1" Tapped="OnTapped" />
+    </ContentView.GestureRecognizers>
+
+</ContentView>

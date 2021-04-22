@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:valueConverters="clr-namespace:RecompildPOS.ValueConverters;assembly=RecompildPOS"
+             xmlns:components="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+             mc:Ignorable="d"
+             x:Class="RecompildPOS.Components.ItemPicker.ItemPicker"
+             x:Name="ItemPickerRootView"
+             Style="{StaticResource DefaultItemPicker}">
+
+  
+
+    <ContentView.Content>
+
+        <!--  Grid for control and bottom error label  -->
+        <Grid CompressedLayout.IsHeadless="True" RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <!--  Grid for top/bottom borders and control. Not compressed as we need background color variation on errors.  -->
+            <Grid
+                Grid.Row="0"
+                BackgroundColor="{Binding Source={x:Reference ItemPickerRootView}, Path=EntryBackgroundColor}"
+                ColumnSpacing="0">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="1" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1" />
+                </Grid.ColumnDefinitions>
+
+
+
+                <!--Left Border-->
+                <BoxView Grid.Row="0" Grid.RowSpan="3" Grid.Column="0" WidthRequest="1" Color="{Binding Source={x:Reference ItemPickerRootView}, Path=BorderColor}">
+                    
+                </BoxView>
+
+                <!--Right Border-->
+                <BoxView Grid.Row="0" Grid.RowSpan="3" Grid.Column="4" WidthRequest="1" Color="{Binding Source={x:Reference ItemPickerRootView}, Path=BorderColor}">
+                   
+                </BoxView>
+
+                <!--Top Border-->
+                <BoxView
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    HeightRequest="1"
+                    IsVisible="{Binding Source={x:Reference ItemPickerRootView}, Path=IsTopBorderVisibleWhenValid}"
+                    VerticalOptions="Start"
+                    Color="{Binding Source={x:Reference ItemPickerRootView}, Path=BorderColor}" />
+
+
+               
+
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Margin="15,0,0,0"
+                    IsVisible="True"
+                    VerticalOptions="Center">
+                    <Image.Source>
+                        <FontImageSource Glyph="{Binding Source={x:Reference ItemPickerRootView}, Path=EntryIcon}"
+                                         FontFamily="FontAwesomeRegular"
+                                         Size="Default"
+                                         Color="{Binding Source={x:Reference ItemPickerRootView}, Path=TextColor}"/>
+                    </Image.Source>
+                </Image>
+                <!--  Grid to keep entry standard height  -->
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="2"
+                    HeightRequest="60"
+                    CompressedLayout.IsHeadless="True"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand">
+
+                    <!--  Stack for top placeholder and entry  -->
+                    <StackLayout
+                        CompressedLayout.IsHeadless="True"
+                        Spacing="5"
+                        VerticalOptions="CenterAndExpand">
+
+                        <Picker
+                            x:Name="Picker"
+                            Margin="15,0,10,0"
+                            FontFamily="Regular"
+                            IsEnabled="{Binding Source={x:Reference ItemPickerRootView}, Path=IsEnabled}"
+                            Title="{Binding Source={x:Reference ItemPickerRootView}, Path=Text}"
+                            TextColor="{Binding Source={x:Reference ItemPickerRootView}, Path=TextColor}"
+                            TitleColor="{Binding Source={x:Reference ItemPickerRootView}, Path=TextColor}"
+                            HorizontalOptions="FillAndExpand"
+                            ItemsSource="{Binding Source={x:Reference ItemPickerRootView}, Path=ItemsSource}"
+                            SelectedItem="{Binding Source={x:Reference ItemPickerRootView}, Path=SelectedItem}"
+                            SelectedIndex="{Binding Source={x:Reference ItemPickerRootView}, Path=SelectedItemIndex}"
+                            VerticalOptions="Center">
+                        </Picker>
+                    </StackLayout>
+                </Grid>
+
+                <!--  Trailing optional icon  -->
+                <Image
+                    Grid.Row="1"
+                    Grid.Column="3"
+                    Margin="0,0,10,0"
+                    HeightRequest="22"
+                    Source="{Binding Source={x:Reference ItemPickerRootView}, Path=TrailingIcon}"
+                    HorizontalOptions="End"
+                    VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding Source={x:Reference ItemPickerRootView}, Path=TrailingIconCommand}" />
+                    </Image.GestureRecognizers>
+                </Image>
+
+                <BoxView
+                    Grid.Row="2"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="4"
+                    HeightRequest="1"
+                    IsVisible="{Binding Source={x:Reference ItemPickerRootView}, Path=IsBottomBorderVisibleWhenValid}"
+                    VerticalOptions="EndAndExpand"
+                    Color="{Binding Source={x:Reference ItemPickerRootView}, Path=BorderColor}">
+                </BoxView>
+            </Grid>
+           
+        </Grid>
+
+    </ContentView.Content>
+
+
+  
+
+</ContentView>

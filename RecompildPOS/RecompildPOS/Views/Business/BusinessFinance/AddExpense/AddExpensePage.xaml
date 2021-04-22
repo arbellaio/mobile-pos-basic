@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<base:BasePage xmlns="http://xamarin.com/schemas/2014/forms"
+               xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+               xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+               xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+               xmlns:language="clr-namespace:RecompildPOS.Resources.Language;assembly=RecompildPOS"
+               xmlns:valueConverters="clr-namespace:RecompildPOS.ValueConverters;assembly=RecompildPOS"
+               xmlns:icons="clr-namespace:RecompildPOS.Resources.Icons;assembly=RecompildPOS"
+               xmlns:forms="clr-namespace:Lottie.Forms;assembly=Lottie.Forms"
+               xmlns:entryField="clr-namespace:RecompildPOS.Components.EntryField;assembly=RecompildPOS"
+               xmlns:base="clr-namespace:RecompildPOS.Views.Base;assembly=RecompildPOS"
+               xmlns:business="clr-namespace:RecompildPOS.ViewModels.Business;assembly=RecompildPOS"
+               mc:Ignorable="d"
+               x:Class="RecompildPOS.Views.Business.BusinessFinance.AddExpense.AddExpensePage">
+
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+            <Label Text="{x:Static language:AppResources.BUSINESS_FINANCE_PAGE_TITLE}"
+                   Style="{StaticResource PageTitleStyle}" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+    <ContentPage.BindingContext>
+        <business:AddExpenseViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <valueConverters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding GoBackPageCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource Glyph="{x:Static icons:FontAwesomeIcons.x}"
+                                 FontFamily="FontAwesomeSolid" Color="White" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Frame Margin="20" BackgroundColor="White" CornerRadius="10">
+        <StackLayout>
+            <forms:AnimationView
+                x:Name="AnimationView"
+                Animation="loader.json"
+                Loop="True"
+                IsPlaying="True"
+                VerticalOptions="Center"
+                HorizontalOptions="Center"
+                IsVisible="{Binding IsBusy}" />
+            <StackLayout Padding="5" IsVisible="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}">
+                <entryField:EntryField x:Name="ExpenseName"
+                                       Style="{StaticResource DefaultTextField}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.MoneyCheck}"
+                                       Text="{Binding BusinessExpense.ExpenseName}"
+                                       Placeholder="{x:Static language:AppResources.BUSINESS_FINANCE_PAGE_EXPENSE_NAME}" />
+
+                <entryField:EntryField x:Name="ExpenseAmount" Style="{StaticResource DefaultTextField}"
+                                       EntryIcon="{x:Static icons:FontAwesomeIcons.MoneyBill}"
+                                       Text="{Binding BusinessExpense.ExpenseAmount}"
+                                       Placeholder="{x:Static language:AppResources.BUSINESS_FINANCE_PAGE_EXPENSE_AMOUNT}" />
+
+                
+
+                <Button Text="{x:Static language:AppResources.BUSINESS_FINANCE_PAGE_EXPENSE_SAVE}"
+                        Style="{StaticResource DefaultButtonStyleGrayText}"
+                        Command="{Binding SaveBusinessExpenseCommand}" />
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</base:BasePage>
